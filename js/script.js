@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const adults = prompt('Number of adults', '2') || '2';
       const children = prompt('Number of children', '0') || '0';
 
-      const message = `Hello Grand Season Hotel, I want to book: ${roomText}. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
+      const message = `Hello Grand Seasons Hotel, I want to book: ${roomText}. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
       openWhatsApp(WA_NUMBER_PRIMARY, message);
     });
   });
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const checkout = document.getElementById('heroCheckout').value || 'TBD';
       const adults = document.getElementById('heroAdults').value || 'TBD';
       const children = document.getElementById('heroChildren').value || 'TBD';
-      const message = `Hello Grand Season Hotel, I would like to book a room. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
+      const message = `Hello Grand Seasons Hotel, I would like to book a room. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
       openWhatsApp(WA_NUMBER_PRIMARY, message);
     });
   }
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const adults = document.getElementById('resAdults').value || 'TBD';
       const children = document.getElementById('resChildren').value || 'TBD';
 
-      const message = `Hello Grand Season Hotel, my name is ${name}. I would like to book: ${room}. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
+      const message = `Hello Grand Seasons Hotel, my name is ${name}. I would like to book: ${room}. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
       openWhatsApp(WA_NUMBER_PRIMARY, message);
     });
   }
