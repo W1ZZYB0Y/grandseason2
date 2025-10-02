@@ -8,21 +8,14 @@
   box-sizing: border-box;
 }
 
-/* Make carousel captions readable on all images */
-.carousel-caption {
-  background: rgba(0, 0, 0, 0.55); /* dark overlay */
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  display: inline-block;
-}
-
+/* Carousel captions without black box */
 .carousel-caption h1,
 .carousel-caption h6,
 .carousel-caption p {
-  color: #fff !important; /* force white text */
-  text-shadow: 0px 2px 5px rgba(0,0,0,0.8); /* extra contrast */
+  color: #f8f9fa !important; /* soft off-white instead of pure white */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* shadow for readability */
+  font-weight: 600;
 }
-
 body {
   font-family: 'Poppins', sans-serif;
   background: #fff;
