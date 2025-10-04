@@ -1,6 +1,12 @@
 // Global config
 const WA_NUMBER_PRIMARY = '2348130002452'; // main WhatsApp (no plus)
 
+// Helper function
+function openWhatsApp(number, message) {
+  const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
 // DOM ready
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -10,19 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     reservationForm.addEventListener('submit', (e) => e.preventDefault());
   }
 
-  // Quick book buttons on cards (only for non-anchors)
+  // Quick book buttons on cards (skip anchors)
   document.querySelectorAll('.book-btn').forEach(btn => {
-    // if it's an <a> (we converted room preview buttons to anchors) do nothing
     if (btn.tagName.toLowerCase() === 'a') return;
 
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const roomText = btn.getAttribute('data-room') || btn.textContent.trim();
-      // NOTE: Avoid using prompt() here to prevent pop-up blocking in some browsers.
-      // Keep quick card booking simple — open WhatsApp with a short prefilled message.
       const message = `Hello Grand Seasons Hotel, I want to book: ${roomText}.`;
-      const url = `https://wa.me/${WA_NUMBER_PRIMARY}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
+      openWhatsApp(WA_NUMBER_PRIMARY, message);
     });
   });
 
@@ -36,16 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const adults = document.getElementById('heroAdults')?.value || 'TBD';
       const children = document.getElementById('heroChildren')?.value || 'TBD';
       const message = `Hello Grand Seasons Hotel, I would like to book a room. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
-      const url = `https://wa.me/${WA_NUMBER_PRIMARY}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
+      openWhatsApp(WA_NUMBER_PRIMARY, message);
     });
   }
 
-  // Reservation form anchor/button (recommended anchor in HTML)
+  // Reservation form button
   const resBtn = document.getElementById('resBookBtn');
   if (resBtn) {
     resBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // we'll handle opening
+      e.preventDefault();
 
       const room = document.getElementById('resRoom')?.value || 'TBD';
       const nameEl = document.getElementById('resName');
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const adults = adultsEl?.value || 'TBD';
       const children = childrenEl?.value || 'TBD';
 
-      // basic validation
+      // Basic validation
       if (!name) {
         alert('Please enter your full name.');
         nameEl?.focus();
@@ -73,46 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const message = `Hello Grand Seasons Hotel, my name is ${name}. I would like to book: ${room}. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
-      const url = `https://wa.me/${WA_NUMBER_PRIMARY}?text=${encodeURIComponent(message)}`;
-
-      // set href for progressive enhancement & open in new tab
-      resBtn.setAttribute('href', url);
-      window.open(url, '_blank', 'noopener,noreferrer');
+      openWhatsApp(WA_NUMBER_PRIMARY, message);
     });
   }
 
 }); // end DOMContentLoaded
 
-// WhatsApp Booking Logic
-const WA_NUMBER_PRIMARY = '2348130002452'; // main WhatsApp number (no plus)
-
-function openWhatsApp(number, message) {
-  const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const resBtn = document.getElementById('resBookBtn');
-  if (resBtn) {
-    resBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // stops form/page refresh
-
-      const room = document.getElementById('resRoom').value;
-      const name = document.getElementById('resName').value || 'Guest';
-      const checkin = document.getElementById('resCheckin').value || 'TBD';
-      const checkout = document.getElementById('resCheckout').value || 'TBD';
-      const adults = document.getElementById('resAdults').value || 'TBD';
-      const children = document.getElementById('resChildren').value || 'TBD';
-
-      const message = `Hello Grand Seasons Hotel, my name is ${name}. I would like to book: ${room}. Check-in: ${checkin}. Check-out: ${checkout}. Adults: ${adults}. Children: ${children}.`;
-      openWhatsApp(WA_NUMBER_PRIMARY, message);
-    });
-  }
-});
-
-// Simple slideshow (unchanged)
+// Simple slideshow
 let slideIndex = 0;
-showSlides();
 function showSlides() {
   const slides = document.getElementsByClassName('mySlides');
   for (let i = 0; i < slides.length; i++) {
@@ -123,3 +92,4 @@ function showSlides() {
   if (slides[slideIndex - 1]) slides[slideIndex - 1].style.display = 'block';
   setTimeout(showSlides, 3000);
 }
+showSlides();
