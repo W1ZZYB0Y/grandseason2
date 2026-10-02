@@ -1,13 +1,24 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('hotel.urls')),
 ]
 
+# Media files (room/review photos) have no other server configured for
+# them (no S3/Cloudinary yet), so serve them via Django directly in all
+# environments — fine at this traffic level.
+#
+# NOTE: Django's static() helper silently does nothing when DEBUG=False
+# (it's designed to be dev-only), so we call the underlying view
+# directly here instead to deliberately keep this working in production.
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+]
+
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
