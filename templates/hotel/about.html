@@ -1,0 +1,58 @@
+{% extends "hotel/base.html" %}
+{% load static %}
+
+{% block title %}About — Grand Seasons Hotel{% endblock %}
+
+{% block content %}
+<main class="py-5">
+  <div class="container">
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <h2 class="section-title">Welcome to Grand Seasons Hotel</h2>
+        <p class="lead">
+          Grand Seasons Hotel Nnewi is a premier destination where modern comfort meets timeless hospitality.
+          Conveniently located in the heart of Nnewi, the hotel offers elegantly designed rooms, a stylish bar,
+          and exceptional dining experiences.
+        </p>
+        <p>
+          Whether you're visiting for business or leisure, Grand Seasons Hotel promises a warm welcome,
+          outstanding service, and a truly memorable stay.
+        </p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{% static 'images/DSC_0964.jpg' %}" class="img-fluid shadow-lg" loading="lazy" alt="Hotel View">
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100 about-card">
+          <img src="{% static 'images/POOL BAR 8.jpg' %}" class="card-img-top" loading="lazy" alt="Bar">
+          <div class="card-body">
+            <h5 class="card-title">Bar</h5>
+            <p class="card-text">Relax with signature cocktails and fine wines in our elegant hotel bar — the perfect place to unwind.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100 about-card">
+          <img src="{% static 'images/dip.jpeg' %}" class="card-img-top" loading="lazy" alt="Lounge">
+          <div class="card-body">
+            <h5 class="card-title">Luxury Lounge</h5>
+            <p class="card-text">Relax and unwind in our stylish lounge designed for comfort and elegance.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100 about-card">
+          <img src="{% static 'images/pp1.jpeg' %}" class="card-img-top" loading="lazy" alt="Pool">
+          <div class="card-body">
+            <h5 class="card-title">Refreshing Pool</h5>
+            <p class="card-text">Enjoy a refreshing swim in our crystal-clear outdoor pool after a long day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

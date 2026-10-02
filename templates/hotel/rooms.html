@@ -1,0 +1,69 @@
+{% extends "hotel/base.html" %}
+{% load static humanize %}
+
+{% block title %}Rooms — Grand Seasons Hotel{% endblock %}
+
+{% block extra_head %}
+<style>
+  .room-carousel img { height: 250px; object-fit: cover; }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="py-5">
+  <div class="container">
+    <h2 class="mb-4">Rooms & Accommodation</h2>
+    <p>We offer a range of well-furnished accommodations, including Single Rooms and Suites.</p>
+
+    <div class="row g-4 mt-4">
+      {% for room in rooms %}
+      <div class="col-md-6">
+        <div class="card h-100">
+          {% if room.images.all %}
+          <div id="roomCarousel{{ room.id }}" class="carousel slide carousel-fade room-carousel" data-bs-ride="carousel" data-bs-interval="4000">
+            <div class="carousel-inner">
+              {% for img in room.images.all %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ img.image.url }}" class="d-block w-100" loading="lazy" alt="{{ room.name }}">
+              </div>
+              {% endfor %}
+            </div>
+            {% if room.images.count > 1 %}
+            <button class="carousel-control-prev" type="button" data-bs-target="#roomCarousel{{ room.id }}" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#roomCarousel{{ room.id }}" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+            {% endif %}
+          </div>
+          {% else %}
+          <img src="{% static 'images/DSC_0964.jpg' %}" class="d-block w-100" style="height:250px;object-fit:cover;" loading="lazy" alt="{{ room.name }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ room.name }}</h5>
+            <p class="card-text">
+              {% if room.old_price %}
+                <span class="text-muted text-decoration-line-through">₦{{ room.old_price|intcomma }}</span>
+              {% endif %}
+              From ₦{{ room.price|intcomma }} /night
+            </p>
+            {% if room.short_description %}<p>{{ room.short_description }}</p>{% endif %}
+            {% if room.amenity_list %}
+            <ul>
+              {% for item in room.amenity_list %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <button class="btn btn-success book-btn" data-room="{{ room.name }} | ₦{{ room.price|intcomma }} /night">Book now</button>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-muted">No rooms are available right now — please check back soon.</p>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock %}

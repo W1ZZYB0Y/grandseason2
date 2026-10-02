@@ -1,0 +1,20 @@
+{% extends "hotel/base.html" %}
+{% load static %}
+
+{% block title %}Gallery — Grand Seasons Hotel{% endblock %}
+
+{% block content %}
+<main class="py-5">
+  <div class="container">
+    <h2>Gallery</h2>
+    <div class="row g-3">
+      <div class="col-md-4"><img src="{% static 'images/VIP 3.jpg' %}" class="img-fluid rounded" loading="lazy" alt="Gallery photo"></div>
+      <div class="col-md-4"><img src="{% static 'images/DELUX 1.jpg' %}" class="img-fluid rounded" loading="lazy" alt="Gallery photo"></div>
+      <div class="col-md-4"><img src="{% static 'images/SUPERIOR 3.jpg' %}" class="img-fluid rounded" loading="lazy" alt="Gallery photo"></div>
+      <div class="col-md-4"><img src="{% static 'images/POOL BAR 3.jpg' %}" class="img-fluid rounded" loading="lazy" alt="Gallery photo"></div>
+      <div class="col-md-4"><img src="{% static 'images/pp1.jpeg' %}" class="img-fluid rounded" loading="lazy" alt="Gallery photo"></div>
+      <div class="col-md-4"><img src="{% static 'images/DSC_1051.jpg' %}" class="img-fluid rounded" loading="lazy" alt="Gallery photo"></div>
+    </div>
+  </div>
+</main>
+{% endblock %}
