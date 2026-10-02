@@ -3,6 +3,23 @@ venv/
 __pycache__/
 *.pyc
 db.sqlite3
-media/
 staticfiles/
+
+# Media: track the initial seed room photos (shipped with the code so
+# they survive Render's ephemeral filesystem), but ignore anything an
+# admin uploads later through /admin/ — those won't persist on Render's
+# free tier anyway (see DEPLOYMENT.md) and don't belong in source control.
+media/*
+!media/rooms/
+media/rooms/*
+!media/rooms/CLASSIC_1.jpg
+!media/rooms/CLASSIC_3.jpg
+!media/rooms/DELUX_1.jpg
+!media/rooms/DELUX_2.jpg
+!media/rooms/SUPERIOR_1.jpg
+!media/rooms/SUPERIOR_3.jpg
+!media/rooms/EXECUTIVE_1.jpg
+!media/rooms/EXECUTIVE_3.jpg
+!media/rooms/DIPLOMATIC_1.jpg
+!media/rooms/DSC_0975.jpg
 .DS_Store
